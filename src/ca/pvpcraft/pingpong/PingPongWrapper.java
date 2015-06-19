@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+/**
+ * Simple Pong game using java swing library
+ * @author macdja38
+ *
+ */
 public class PingPongWrapper extends JFrame{
 	/**
 	 * 

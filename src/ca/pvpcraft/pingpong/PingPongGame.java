@@ -13,6 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Game instance including scores
+ * @author macdja38
+ *
+ */
 public class PingPongGame extends JPanel implements ActionListener, KeyListener {
 	/**
 	 * 
@@ -40,7 +45,6 @@ public class PingPongGame extends JPanel implements ActionListener, KeyListener 
 	{
 		GameObject = page;
 		super.paintComponent(page);
-		//Score = new JLabel("L:"+playerL+"R:"+playerR); //"L:"+playerL+"R:"+playerR
 		page.setColor(Color.GREEN);
 		page.fillRect((int)Ball.getX()-10,(int)Ball.getY()-10,20,20);
 		page.fillRect((int)this.getWidth()-10,(int)(PaddleR.getY()),10,(int)PaddleHeight);
@@ -59,19 +63,14 @@ public class PingPongGame extends JPanel implements ActionListener, KeyListener 
 		c.gridy = 1;
 		frame.add(this, c);
 		Score = L;
-		/*c.ipady = 0;
-		c.weighty = 0.0;
-		c.weightx = 0.0;
-		c.gridx = 0;
-		c.gridy = 2;
-		frame.add(Score, c);*/
 		frame.requestFocusInWindow();
 		frame.addKeyListener(this);
 		FrameReference = frame;
 		setBackground(Color.BLACK);
-		//setPreferredSize(new Dimension(250,250));
 	}
-
+	/**
+	 * stop the game timer
+	 */
 	public void end() {
 		//GameObject.remove(GameObject);
 		timer.stop();
@@ -79,10 +78,10 @@ public class PingPongGame extends JPanel implements ActionListener, KeyListener 
 	public void requestListener() {
 		FrameReference.requestFocusInWindow();
 	}
-
+	/**
+	 * initialize objects, place things in the correct positions and repaint the field
+	 */
 	public void start() {
-		revalidate();
-		repaint();
 		Height = FrameReference.getHeight();
 		Width = FrameReference.getWidth();
 		Ball.reset(Height, Width);
@@ -91,6 +90,8 @@ public class PingPongGame extends JPanel implements ActionListener, KeyListener 
 		timer.start();
 		playerR = 0;
 		playerL = 0;
+		revalidate();
+		repaint();
 	}
 
 	@Override
@@ -118,7 +119,6 @@ public class PingPongGame extends JPanel implements ActionListener, KeyListener 
 		}
 		scoreTick();
 		revalidate();
-		//paint(GameObject);
 		repaint();
 	}
 
@@ -133,6 +133,9 @@ public class PingPongGame extends JPanel implements ActionListener, KeyListener 
 		timer.start();
 	}
 
+	/**
+	 * Update the scoreboard label and in the event of a win restart the game
+	 */
 	private void scoreTick() {
 		Score.setText("L:"+playerL+" R:"+playerR);
 		if(playerL>=2 || playerR>=2) {
